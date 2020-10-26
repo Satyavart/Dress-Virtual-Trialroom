@@ -42,10 +42,10 @@ class general_pose_model(object):
                             ]
         prototxt = os.path.join(
             modelpath,
-            "C:/Class notes/New folder/abcdef/pose_deploy_linevec.prototxt.txt")
+            "C:/Classnotes/Dress-Virtual-Trialroom/pose_deploy_linevec.prototxt.txt")
         caffemodel = os.path.join(
             modelpath,
-            "C:/Class notes/New folder/abcdef/pose_iter_160000.caffemodel")
+            "C:/Classnotes/Dress-Virtual-Trialroom/pose_iter_160000.caffemodel")
         mpi_model = cv2.dnn.readNetFromCaffe(prototxt, caffemodel)
 
         return mpi_model
@@ -70,10 +70,10 @@ class general_pose_model(object):
                             [14, 16], [15, 17]]
         prototxt   = os.path.join(
             modelpath,
-            "/content/drive/My Drive/New folder/pose_deploy_linevec.prototxt.txt")
+            "C:/Classnotes/Dress-Virtual-Trialroom/pose_deploy_linevec.prototxt.txt")
         caffemodel = os.path.join(
             modelpath,
-            "/content/drive/My Drive/New folder/pose_iter_160000.caffemodel")
+            "C:/Classnotes/Dress-Virtual-Trialroom/pose_iter_160000.caffemodel")
         coco_model = cv2.dnn.readNetFromCaffe(prototxt, caffemodel)
 
         return coco_model
@@ -104,7 +104,7 @@ class general_pose_model(object):
         img_cv2 = cv2.imread(imgfile)
         # assert not isinstance(img_cv2,type(None))
         img_height, img_width, _ = img_cv2.shape
-        #print(img_cv2.shape)
+        print(img_cv2.shape)
         inpBlob = cv2.dnn.blobFromImage(img_cv2,
                                         1.0 / 255,
                                         (self.inWidth, self.inHeight),
@@ -217,7 +217,7 @@ class general_pose_model(object):
 if __name__ == '__main__':
     print("[INFO]Pose estimation.")
 
-    img_file = "/content/UIFit/backend/tucked1.jpg"
+    img_file = "C:/Classnotes/Dress-Virtual-Trialroom/tucked1.jpg"
     # cv2.imshow(img_file)
     start = time.time()
     modelpath = ""
