@@ -53,6 +53,7 @@ def start(front, bent, back, shirt):
     img = cv2.imread('C:/Classnotes/Dress-Virtual-Trialroom/output_maybe_success.png')
     path = 'C:/Classnotes/Dress-Virtual-Trialroom/'
     cv2.imwrite(os.path.join(path , 'static/out.jpg'), img)
+    print("File saved")
     cv2.waitKey(0)
 
 

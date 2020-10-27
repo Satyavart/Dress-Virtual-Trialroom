@@ -30,6 +30,11 @@ def model_run():
     return encoded
 
 
+def deleting_files():
+    for file in os.listdir(path):
+        os.remove(os.path.join(path, file))
+
+
 @app.route("/api/android",methods=['GET', 'POST'])
 def api_call():
     incoming_files = list(request.files)
@@ -47,6 +52,7 @@ def api_call():
         print("File saved ",it)
         it = it + 1
     cypher = model_run()
+    deleting_files()
     return jsonify(cypher)
 
 
