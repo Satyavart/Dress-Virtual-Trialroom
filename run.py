@@ -11,15 +11,14 @@ from PIL import Image
 path = "C:/Classnotes/Dress-Virtual-Trialroom/static/"
 fn = []
 app = Flask(__name__)
-<<<<<<< HEAD
 
-=======
->>>>>>> 51f614295a3287537e0c04eecb34f4de9f4cc018
+
 def get_response_image(image_path):
     with open(image_path,"rb") as file:
         content = base64.b64encode(file.read())
         image_base64 = {"base64" : content.decode()}
     return image_base64
+
 
 def model_run():
     frontloc = path + fn[0]
@@ -34,10 +33,7 @@ def model_run():
 @app.route("/", methods=['GET', 'POST'])
 def home():
     return "HEllo World"
-<<<<<<< HEAD
-=======
 
->>>>>>> 51f614295a3287537e0c04eecb34f4de9f4cc018
 
 @app.route("/api/android",methods=['GET', 'POST'])
 def api_call():
@@ -57,6 +53,7 @@ def api_call():
         it = it + 1
     cypher = model_run()
     return jsonify(cypher)
+
 
 @app.route("/api/android",methods=['GET', 'POST'])
 def api_call():
