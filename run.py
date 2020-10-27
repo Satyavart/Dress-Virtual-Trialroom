@@ -30,11 +30,6 @@ def model_run():
     return encoded
 
 
-@app.route("/", methods=['GET', 'POST'])
-def home():
-    return "HEllo World"
-
-
 @app.route("/api/android",methods=['GET', 'POST'])
 def api_call():
     incoming_files = list(request.files)
@@ -54,6 +49,10 @@ def api_call():
     cypher = model_run()
     return jsonify(cypher)
 
+
+@app.route("/", methods=['GET', 'POST'])
+def home():
+    return "HEllo World"
 
 
 if __name__ == "__main__":
