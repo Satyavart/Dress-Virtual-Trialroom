@@ -49,8 +49,8 @@ def api_call():
         image = request.files[file]
         filename = werkzeug.utils.secure_filename(image.filename)
         print(filename)
+        print()
         abc = filename.split(".")
-        print(abc)
         fn.append(str(it) + "." + abc[-1])
         image.save(fn[it-1])
         print("File saved ",it)

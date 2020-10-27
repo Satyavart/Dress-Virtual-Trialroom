@@ -104,7 +104,6 @@ class general_pose_model(object):
         img_cv2 = cv2.imread(imgfile)
         # assert not isinstance(img_cv2,type(None))
         img_height, img_width, _ = img_cv2.shape
-        print(img_cv2.shape)
         inpBlob = cv2.dnn.blobFromImage(img_cv2,
                                         1.0 / 255,
                                         (self.inWidth, self.inHeight),
