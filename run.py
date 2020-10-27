@@ -38,8 +38,8 @@ def get_response_image(image_path):
 
 
 
-@app.route("/", methods=['GET', 'POST'])
-def home():
+@app.route("/android", methods=['GET', 'POST'])
+def android():
     if api_call() == True:
         frontloc = path + fn[0] 
         bentloc = path + fn[1]
@@ -50,7 +50,9 @@ def home():
         return jsonify(encoded)
     return jsonify("error")
 
-
+@app.route("/")
+def home():
+    return "HEllo World"
 
 if __name__ == "__main__":
     app.run()
