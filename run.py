@@ -29,10 +29,11 @@ def api_call():
         it = it + 1
     return True
 
+
 def get_response_image(image_path):
     with open(image_path,"rb") as file:
         content = base64.b64encode(file.read())
-        image_base64 = {"base64" : content}
+        image_base64 = {"base64" : content.decode()}
     return image_base64
 
 
