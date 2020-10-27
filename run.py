@@ -22,8 +22,8 @@ def api_call():
         print("\nSaving Image No. ", str(it), "/", len(files))
         image = request.files[file]
         filename = werkzeug.utils.secure_filename(image.filename)
-        filename.split(".")
-        fn[it-1] = str(it) + "." + filename[-1]
+        abc = filename.split(".")
+        fn[it-1] = str(it) + "." + abc[-1]
         image.save(fn[it-1])
         print("File {} save",it)
         it = it + 1
@@ -33,7 +33,7 @@ def api_call():
 def get_response_image(image_path):
     with open(image_path,"rb") as file:
         content = base64.b64encode(file.read())
-        image_base64 = {"base64" : content.decode()}
+        image_base64 = {"base64" : content}
     return image_base64
 
 
