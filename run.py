@@ -49,7 +49,7 @@ def home():
         TestScript.start(frontloc, bentloc, backloc, shirtloc)
         encoded = get_response_image(path+"out.jpg")
         return jsonify(encoded)
-    return jsonify()
+    return jsonify("error")
 
 
 
