@@ -4,7 +4,7 @@ import os
 import werkzeug
 import cv2
 import io
-from base64 import encodebytes
+import base64
 from PIL import Image
 
 path = "C:/Classnotes/Dress-Virtual-Trialroom/static/"
@@ -30,12 +30,10 @@ def api_call():
     return True
 
 def get_response_image(image_path):
-    pil_img = Image.open(image_path, mode='r') # reads the PIL image
-    byte_arr = io.BytesIO()
-    pil_img.save(byte_arr, format='PNG') # convert the PIL image to byte array
-    encoded_img = encodebytes(byte_arr.getvalue()).decode('ascii') # encode as base64
-    tup = {"base64" : encoded_img}
-    return tup
+    with open(image_path,"rb") as file:
+        content = base64.b64encode(file.read())
+        image_base64 = {"base64" : content}
+    return image_base64
 
 
 
