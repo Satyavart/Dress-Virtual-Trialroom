@@ -55,25 +55,6 @@ def api_call():
     return jsonify(cypher)
 
 
-@app.route("/api/android",methods=['GET', 'POST'])
-def api_call():
-    incoming_files = list(request.files)
-    print("Files recieved :",len(incoming_files))
-    os.chdir(path)
-    it = 1
-    for file in incoming_files:
-        image = request.files[file]
-        filename = werkzeug.utils.secure_filename(image.filename)
-        print(filename)
-        abc = filename.split(".")
-        print(abc)
-        fn.append(str(it) + "." + abc[-1])
-        image.save(fn[it-1])
-        print("File saved ",it)
-        it = it + 1
-    cypher = model_run()
-    return jsonify(cypher)
-
 
 if __name__ == "__main__":
     app.run()
