@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import TestScript
 import os
+import json
 import werkzeug
 import cv2
 import io
@@ -20,19 +21,31 @@ def get_response_image(image_path):
     return image_base64
 
 
-def model_run():
+def deleting_files():
+    for file in os.listdir(path):
+        os.remove(os.path.join(path, file))
+
+'''
+@app.route("/colour-blind",methods=['GET', 'POST'])
+def blindness(error):
+    if error == "P":
+        #call function using import and rewrite the changes in out.jpg
+    elif error == "D":
+        #call function using import rewrite the changes in out.jpg
+    elif error == "T":
+        #call function using import rewrite the changes in out.jpg
+    return'''
+
+
+def model_run(error):
     frontloc = path + fn[0]
     bentloc = path + fn[1]
     backloc = path + fn[2]
     shirtloc = path + fn[3]
     TestScript.start(frontloc, bentloc, backloc, shirtloc)
-    encoded = get_response_image(path+"out.jpg")
+    #blindness(error)
+    encoded = get_response_image(path+"waka.jpg")
     return encoded
-
-
-def deleting_files():
-    for file in os.listdir(path):
-        os.remove(os.path.join(path, file))
 
 
 @app.route("/api/android",methods=['GET', 'POST'])
@@ -41,18 +54,22 @@ def api_call():
     print("Files recieved :",len(incoming_files))
     os.chdir(path)
     it = 1
+    error = 'N'
     for file in incoming_files:
         image = request.files[file]
         filename = werkzeug.utils.secure_filename(image.filename)
-        print(filename)
         print()
+        print(filename)
         abc = filename.split(".")
-        fn.append(str(it) + "." + abc[-1])
-        image.save(fn[it-1])
+        if abc[-1] != "json":    
+            fn.append(str(it) + "." + abc[-1])
+            image.save(fn[it-1])
+        else:
+            error = json.loads(filename.decode())
         print("File saved ",it)
         it = it + 1
-    cypher = model_run()
-    deleting_files()
+    cypher = model_run(error)
+    #deleting_files()
     return jsonify(cypher)
 
 
